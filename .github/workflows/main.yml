@@ -1,23 +1,17 @@
-name: SSH Action
-
+name: SSH Deploy
 on:
   push:
     branches:
       - main
-
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v2
-
-    - name: Setup SSH
-      uses: webfactory/ssh-agent@v0.5.4
+    - name: executing remote ssh commands
+      uses: appleboy/ssh-action@v1.0.0
       with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-    - name: SSH into AWS Ubuntu and touch hello.txt
-      run: |
-        ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} ubuntu@3.77.202.24 'touch hello.txt'
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
+        port: ${{ secrets.PORT }}
+        script: touch hello.txt
