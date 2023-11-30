@@ -20,4 +20,4 @@ jobs:
 
     - name: SSH into AWS Ubuntu and touch hello.txt
       run: |
-        ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} ubuntu@your-aws-server-ip 'touch hello.txt'
+        ssh -o StrictHostKeyChecking=no -i ${{ secrets.SSH_PRIVATE_KEY }} ubuntu@3.77.202.24 'touch hello.txt'
